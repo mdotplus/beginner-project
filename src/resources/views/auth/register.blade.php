@@ -1,77 +1,30 @@
-@extends('layouts.app')
+@extends('layouts/app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/fortify-common.css') }}">
 @endsection
 
 @section('content')
-    <div class="register__content">
-        <div class="register-form__heading">
-            <h2>会員登録</h2>
-        </div>
-        <form class="form" action="/register" method="post">
+    <div class="body-contents">
+        <h2>会員登録</h2>
+        <form class="form-contents" action="/register" method="post">
             @csrf
-            <div class="form__group">
-                <div class="form__group-title">
-                    <span class="form__label--item">お名前</span>
-                </div>
-                <div class="form__group-content">
-                    <div class="form__input--text">
-                        <input type="text" name="name" value="{{ old('name') }}" />
-                    </div>
-                    <div class="form__error">
-                        @error('name')
-                            {{ $message }}
-                        @enderror
-                    </div>
-                </div>
-            </div>
-            <div class="form__group">
-                <div class="form__group-title">
-                    <span class="form__label--item">メールアドレス</span>
-                </div>
-                <div class="form__group-content">
-                    <div class="form__input--text">
-                        <input type="email" name="email" value="{{ old('email') }}" />
-                    </div>
-                    <div class="form__error">
-                        @error('email')
-                            {{ $message }}
-                        @enderror
-                    </div>
-                </div>
-            </div>
-            <div class="form__group">
-                <div class="form__group-title">
-                    <span class="form__label--item">パスワード</span>
-                </div>
-                <div class="form__group-content">
-                    <div class="form__input--text">
-                        <input type="password" name="password" />
-                    </div>
-                    <div class="form__error">
-                        @error('password')
-                            {{ $message }}
-                        @enderror
-                    </div>
-                </div>
-            </div>
-            <div class="form__group">
-                <div class="form__group-title">
-                    <span class="form__label--item">確認用パスワード</span>
-                </div>
-                <div class="form__group-content">
-                    <div class="form__input--text">
-                        <input type="password" name="password_confirmation" />
-                    </div>
-                </div>
-            </div>
-            <div class="form__button">
-                <button class="form__button-submit" type="submit">登録</button>
-            </div>
+            <input class="input-box" type="text" name="name" value="{{ old('name') }}" placeholder="名前">
+            @error('name')
+                {{ $message }}
+            @enderror
+            <input class="input-box" type="email" name="email" value="{{ old('email') }}" placeholder="メールアドレス">
+            @error('email')
+                {{ $message }}
+            @enderror
+            <input class="input-box" type="password" name="password" placeholder="パスワード">
+            @error('password')
+                {{ $message }}
+            @enderror
+            <input class="input-box" type="password" name="password_confirmation" placeholder="確認用パスワード">
+            <button class="button-submit" type="submit">会員登録</button>
         </form>
-        <div class="login__link">
-            <a class="login__button-submit" href="/login">ログインの方はこちら</a>
-        </div>
+        <p class="text">アカウントをお持ちの方はこちらから</p>
+        <a class="link" href="/login">ログイン</a>
     </div>
 @endsection

@@ -16,14 +16,14 @@
         <div class="header__inner">
             <div class="header-utilities">
                 <a class="header__logo" href="/">
-                    Attendance Management
+                    Atte
                 </a>
                 <nav>
                     <ul class="header-nav">
-                        <li class="header-nav__item">
-                            <a class="header-nav__link" href="/">マイページ</a>
-                        </li>
                         @if (Auth::check())
+                            <li class="header-nav__item">
+                                <a class="header-nav__link" href="/">マイページ</a>
+                            </li>
                             <li class="header-nav__item">
                                 <form action="/logout" method="post">
                                     @csrf
@@ -40,6 +40,10 @@
     <main>
         @yield('content')
     </main>
+
+    <footer>
+        <small>Atte, inc.</small>
+    </footer>
 </body>
 
 </html>
