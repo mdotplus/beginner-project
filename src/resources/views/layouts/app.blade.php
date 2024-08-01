@@ -22,7 +22,10 @@
                     <ul class="header-nav">
                         @if (Auth::check())
                             <li class="header-nav__item">
-                                <a class="header-nav__link" href="/">マイページ</a>
+                                <a class="header-nav__home" href="/">ホーム</a>
+                            </li>
+                            <li class="header-nav__item">
+                                <a class="header-nav__attendance" href="/attendance">日付一覧</a>
                             </li>
                             <li class="header-nav__item">
                                 <form action="/logout" method="post">
@@ -38,7 +41,9 @@
     </header>
 
     <main>
-        @yield('content')
+        <div class="background">
+            @yield('content')
+        </div>
     </main>
 
     <footer>
