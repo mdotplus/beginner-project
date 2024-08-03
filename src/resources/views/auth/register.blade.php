@@ -11,9 +11,9 @@
             @csrf
             <input class="input-box" type="text" name="name" value="{{ old('name') }}" placeholder="名前">
             @error('name')
-                {{ $message }}
+                {{ $errors->first('name') }}
             @enderror
-            <input class="input-box" type="email" name="email" value="{{ old('email') }}" placeholder="メールアドレス">
+            <input class="input-box" type="text" name="email" value="{{ old('email') }}" placeholder="メールアドレス">
             @error('email')
                 {{ $message }}
             @enderror
