@@ -19,4 +19,4 @@ Route::middleware('auth')->group(function () {
     Route::get('/attendance', [IndexController::class, 'attendance']);
 });
 
-Route::post('/{mode}/{action}', [IndexController::class, 'timestamp']);
+Route::post('/timestamp', [IndexController::class, 'timestamp']);
