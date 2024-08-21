@@ -9,7 +9,7 @@
         <p class="greeting">{{ $user['name'] }} さんお疲れ様です！{{ $user['status'] }}</p>
         <div class="attendance__working">
             <form class="attendance__button" action="/timestamp" method="post">
-            @csrf
+                @csrf
                 <input type="hidden" name="action" value="work_start">
                 <input type="hidden" name="user_id" value="{{ $user['id'] }}">
                 <button class="attendance__button-submit" type="submit"
@@ -18,7 +18,7 @@
                 </button>
             </form>
             <form class="attendance__button" action="/timestamp" method="post">
-            @csrf
+                @csrf
                 <input type="hidden" name="action" value="work_end">
                 <input type="hidden" name="user_id" value="{{ $user['id'] }}">
                 <button class="attendance__button-submit" type="submit"
@@ -29,7 +29,7 @@
         </div>
         <div class="attendance__breaking">
             <form class="attendance__button" action="/timestamp" method="post">
-            @csrf
+                @csrf
                 <input type="hidden" name="action" value="break_start">
                 <input type="hidden" name="user_id" value="{{ $user['id'] }}">
                 <button class="attendance__button-submit" type="submit"
@@ -38,7 +38,7 @@
                 </button>
             </form>
             <form class="attendance__button" action="/timestamp" method="post">
-            @csrf
+                @csrf
                 <input type="hidden" name="action" value="break_end">
                 <input type="hidden" name="user_id" value="{{ $user['id'] }}">
                 <button class="attendance__button-submit" type="submit"
