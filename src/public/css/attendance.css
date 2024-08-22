@@ -1,3 +1,15 @@
+.date-paginator {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.date-paginator__button {
+    border: 2px solid #ddd;
+    font-weight: bold;
+    margin: 0 20px;
+}
+
 .attendance-table {
     width: 90%;
     text-align: center;
@@ -29,4 +41,18 @@
     box-sizing: border-box;
     width: 20%;
     padding: 12px;
+}
+
+nav.flex.items-center.justify-between > div > a,
+nav.flex.items-center.justify-between > div > span {
+    visibility: hidden;
+}
+
+p.text-sm.text-gray-700.leading-5 {
+    display: none;
+}
+
+svg.w-5.h-5 {
+    width: 30px;
+    height: 30px;
 }
