@@ -41,7 +41,7 @@ class IndexController extends Controller
             'status' => $status,
         ];
 
-        return view('index', compact('user'));
+        return view('index', ['user' => $user]);
     }
 
     public function attendance(Request $request)
@@ -56,7 +56,7 @@ class IndexController extends Controller
             count($records),
             $recordsPerPage,
             $request->page,
-            array('path' => $request->url())
+            array('path' => $request->url()),
         );
 
         return view('attendance', [
