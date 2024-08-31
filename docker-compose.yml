@@ -14,11 +14,6 @@ services:
     volumes:
       - ./src:/var/www/
 
-  cron:
-    build: ./docker/cron
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-
   mysql:
     image: mysql:8.0.26
     environment:
