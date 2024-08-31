@@ -48,48 +48,38 @@ class Timestamp extends Model
             }
 
             $timestampsUserGrouped = [];
-            $timestampsUserGrouped[$date] = $timestamps
-                ->sortBy('user_id')
-                ->groupBy('user_name');
+            $timestampsUserGrouped[$date] = $timestamps->sortBy('user_id')->groupBy('user_name');
 
             foreach ($timestampsUserGrouped[$date] as $userName => $timestamps) {
                 $userRecords = [];
 
                 $arrayOfWorkStart = $timestamps->filter(function ($items) {
                         return $items['work_start'] !== null;
-                    })
-                    ->sortdesc()
-                    ->first();
+                    })->sortdesc()->first();
                 $userRecords['work_start'] = isset($arrayOfWorkStart) ? $arrayOfWorkStart['work_start'] : null;
 
                 $arrayOfWorkEnd = $timestamps->filter(function ($items) {
                         return $items['work_end'] !== null;
-                    })
-                    ->sortDesc()
-                    ->first();
+                    })->sortDesc()->first();
                 $userRecords['work_end'] = isset($arrayOfWorkEnd) ? $arrayOfWorkEnd['work_end'] : null;
 
                 $arrayOfBreakStart = array_values(
                         $timestamps->filter(function ($items) {
                             return $items['break_start'] !== null;
-                        })
-                        ->sortDesc()
+                        })->sortDesc()
                         ->map(function ($item, $key) {
                             return $item['break_start'];
-                        })
-                        ->all()
+                        })->all()
                     );
                 $userRecords['break_start'] = isset($arrayOfBreakStart) ? $arrayOfBreakStart : null;
 
                 $arrayOfBreakEnd = array_values(
                         $timestamps->filter(function ($items) {
                             return $items['break_end'] !== null;
-                        })
-                        ->sortDesc()
+                        })->sortDesc()
                         ->map(function ($item, $key) {
                             return $item['break_end'];
-                        })
-                        ->all()
+                        })->all()
                     );
                 $userRecords['break_end'] = isset($arrayOfBreakEnd) ? $arrayOfBreakEnd : null;
 
@@ -99,10 +89,14 @@ class Timestamp extends Model
                 }
                 $userRecords['breaking'] = gmdate('H:i:s', $breaking);
 
-                $userRecords['working'] = gmdate(
-                    'H:i:s',
-                    strtotime($userRecords['work_end']) - strtotime($userRecords['work_start']) - $breaking
-                );
+                if ($userRecords['work_end'] === null) {
+                    $userRecords['working'] = null;
+                } else {
+                    $userRecords['working'] = gmdate(
+                        'H:i:s',
+                        strtotime($userRecords['work_end']) - strtotime($userRecords['work_start']) - $breaking
+                    );
+                }
 
                 $records[$userName] = $userRecords;
             }
