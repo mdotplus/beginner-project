@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Timestamp extends Model
 {
@@ -12,6 +13,28 @@ class Timestamp extends Model
 
     protected $fillable = ['user_id', 'action_id'];
     protected $appends = ['date', 'user_name', 'work_start', 'work_end', 'break_start', 'break_end'];
+
+    public function judgeStatus()
+    {
+        $today = Carbon::now()->format('Y-m-d');
+        [$records, $fixedDate] = Timestamp::getRecordsWithDate($today);
+
+        $name = Auth::user()->name;
+        if (!array_key_exists($name, $records)) {
+            return 'not working';
+        }
+
+        $userRecord = $records[$name];
+        if ($userRecord['work_end'] !== null) {
+            return 'not working';
+        }
+
+        if (count($userRecord['break_start']) !== count($userRecord['break_end'])) {
+            return 'breaking';
+        }
+
+        return 'working';
+    }
 
     public function getRecordsWithDate($defaultDate)
     {

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Action;
 use App\Models\Timestamp;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
@@ -13,28 +12,7 @@ class IndexController extends Controller
 {
     public function index(Request $request)
     {
-        $selectedAction = $request->session()->get('selectedAction');
-        switch ($selectedAction) {
-            case 'work_start':
-                $status = 'working';
-                break;
-            case 'work_end':
-                $status = 'not working';
-                break;
-            case 'break_start':
-                $status = 'breaking';
-                break;
-            case 'break_end':
-                $status = 'working';
-                break;
-            case null:
-                $status = 'not working';
-                break;
-            default:
-                echo '不正な処理です';
-                break;
-        }
-
+        $status = Timestamp::judgeStatus();
         $user = [
             'name' => Auth::user()->name,
             'id' => Auth::user()->id,

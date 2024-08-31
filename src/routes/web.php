@@ -16,8 +16,7 @@ use App\Http\Controllers\IndexController;
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [IndexController::class, 'index']);
+    Route::post('/timestamp', [IndexController::class, 'timestamp']);
     Route::get('/attendance', [IndexController::class, 'attendance']);
     Route::post('/attendance', [IndexController::class, 'attendance']);
 });
-
-Route::post('/timestamp', [IndexController::class, 'timestamp']);
