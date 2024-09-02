@@ -1,0 +1,27 @@
+.verify-body {
+    text-align: center;
+}
+
+.verify-contents {
+    font-size: 24px;
+    font-weight: bold;
+    padding-top: 60px;
+    padding-bottom: 30px;
+}
+
+.verify-again {
+    color: #727272;
+    padding: 30px;
+}
+
+.button-resend {
+    background-color: #214BE0;
+    color: #fff;
+    width: 40%;
+    max-width: 400px;
+    height: 50px;
+    border: 1px solid #214BE0;
+    border-radius: 5px;
+    font-weight: bold;
+    margin: 10px;
+}
