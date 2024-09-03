@@ -13,7 +13,6 @@ class UserPageController extends Controller
     public function userpage(Request $request)
     {
         $users = User::all();
-        /* dd($request->userName); */
 
         if (is_null($request->userName)) {
             return view('user-page', [
