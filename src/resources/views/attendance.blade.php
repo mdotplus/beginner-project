@@ -23,7 +23,7 @@
         </form>
     </div>
     <div class="attendance-table">
-        <table class="table-xontents">
+        <table class="table-contents">
             <tr class="attendance-table__row">
                 <th class="attendance-table__header">名前</th>
                 <th class="attendance-table__header">勤務開始</th>

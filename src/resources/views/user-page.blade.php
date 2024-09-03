@@ -8,7 +8,7 @@
     <div class="flex">
         <div class="flex__user">
             <div class="user-table">
-                <table class="table-xontents">
+                <table class="table-contents">
                     <tr class="attendance-table__row">
                         <th class="attendance-table__header">名前</th>
                     </tr>
@@ -17,7 +17,7 @@
         </div>
         <div class="flex__attendance">
             <div class="attendance-table">
-                <table class="table-xontents">
+                <table class="table-contents">
                     <tr class="attendance-table__row">
                         <th class="attendance-table__header">日付</th>
                         <th class="attendance-table__header">勤務開始</th>
