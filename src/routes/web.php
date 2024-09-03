@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\UserPageController;
 
@@ -20,8 +21,8 @@ use App\Http\Controllers\UserPageController;
 Route::group(['middleware' => ['verified', 'auth']], function () {
     Route::get('/', [IndexController::class, 'index']);
     Route::post('/timestamp', [IndexController::class, 'timestamp']);
-    Route::get('/attendance', [IndexController::class, 'attendance']);
-    Route::post('/attendance', [IndexController::class, 'attendance']);
+    Route::get('/attendance', [AttendanceController::class, 'attendance']);
+    Route::post('/attendance', [AttendanceController::class, 'attendance']);
     Route::get('/userpage', [UserPageController::class, 'userpage']);
     Route::post('/userpage', [UserPageController::class, 'userpage']);
 });
