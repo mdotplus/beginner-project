@@ -7,15 +7,33 @@
     width: 20%;
 }
 
-.flex__attendance {
-    width: 80%;
-}
-
 .user-table {
     width: 90%;
     text-align: center;
     margin: 0 auto;
     padding: 50px 0;
+}
+
+.button-submit {
+    height: 100%;
+    width: 90%;
+    border: none;
+    cursor: pointer;
+}
+
+.target {
+    font-size: 103%;
+    font-weight: bold;
+}
+
+.flex__attendance {
+    width: 80%;
+}
+
+.flex__attendance span {
+    display: block;
+    color: #b2b2b2;
+    text-align: center;
 }
 
 .attendance-table {
@@ -29,12 +47,12 @@
     width: 100%;
 }
 
-.attendance-table__row:first-child {
+.table-row:first-child {
     border-top: 2px solid #ddd;
     border-bottom: 2px solid #ddd;
 }
 
-.attendance-table__row {
+.table-row {
     border-bottom: 1px solid #ddd;
 }
 
@@ -49,18 +67,4 @@
     box-sizing: border-box;
     width: 20%;
     padding: 12px;
-}
-
-nav.flex.items-center.justify-between > div > a,
-nav.flex.items-center.justify-between > div > span {
-    visibility: hidden;
-}
-
-p.text-sm.text-gray-700.leading-5 {
-    display: none;
-}
-
-svg.w-5.h-5 {
-    width: 30px;
-    height: 30px;
 }

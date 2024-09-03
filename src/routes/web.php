@@ -23,6 +23,7 @@ Route::group(['middleware' => ['verified', 'auth']], function () {
     Route::get('/attendance', [IndexController::class, 'attendance']);
     Route::post('/attendance', [IndexController::class, 'attendance']);
     Route::get('/userpage', [UserPageController::class, 'userpage']);
+    Route::post('/userpage', [UserPageController::class, 'userpage']);
 });
 
 Route::get('/email/verify', function () {

@@ -105,6 +105,73 @@ class Timestamp extends Model
         return [$records, $fixedDate];
     }
 
+    public function getRecordsWithUser($targetUser)
+    {
+        $timestampsUserGrouped = collect(Timestamp::all()->toArray())->sortBy('user_id')->groupBy('user_name');
+        $records = [];
+        foreach ($timestampsUserGrouped as $user => $timestamps) {
+            if ($user !== $targetUser) {
+                continue;
+            }
+
+            $timestampsDateGrouped = [];
+            $timestampsDateGrouped[$user] = $timestamps->sortByDesc('date')->groupBy('date');
+
+            foreach ($timestampsDateGrouped[$user] as $date => $timestamps) {
+                $dateRecords = [];
+
+                $arrayOfWorkStart = $timestamps->filter(function ($items) {
+                        return $items['work_start'] !== null;
+                    })->sortdesc()->first();
+                $dateRecords['work_start'] = isset($arrayOfWorkStart) ? $arrayOfWorkStart['work_start'] : null;
+
+                $arrayOfWorkEnd = $timestamps->filter(function ($items) {
+                        return $items['work_end'] !== null;
+                    })->sortDesc()->first();
+                $dateRecords['work_end'] = isset($arrayOfWorkEnd) ? $arrayOfWorkEnd['work_end'] : null;
+
+                $arrayOfBreakStart = array_values(
+                        $timestamps->filter(function ($items) {
+                            return $items['break_start'] !== null;
+                        })->sortDesc()
+                        ->map(function ($item, $key) {
+                            return $item['break_start'];
+                        })->all()
+                    );
+                $dateRecords['break_start'] = isset($arrayOfBreakStart) ? $arrayOfBreakStart : null;
+
+                $arrayOfBreakEnd = array_values(
+                        $timestamps->filter(function ($items) {
+                            return $items['break_end'] !== null;
+                        })->sortDesc()
+                        ->map(function ($item, $key) {
+                            return $item['break_end'];
+                        })->all()
+                    );
+                $dateRecords['break_end'] = isset($arrayOfBreakEnd) ? $arrayOfBreakEnd : null;
+
+                $breaking = 0;
+                foreach ($dateRecords['break_end'] as $index => $time) {
+                    $breaking += strtotime($dateRecords['break_end'][$index]) - strtotime($dateRecords['break_start'][$index]);
+                }
+                $dateRecords['breaking'] = gmdate('H:i:s', $breaking);
+
+                if ($dateRecords['work_end'] === null) {
+                    $dateRecords['working'] = null;
+                } else {
+                    $dateRecords['working'] = gmdate(
+                        'H:i:s',
+                        strtotime($dateRecords['work_end']) - strtotime($dateRecords['work_start']) - $breaking
+                    );
+                }
+
+                $records[$date] = $dateRecords;
+            }
+        }
+
+        return $records;
+    }
+
     public function user() {
         return $this->hasOne(User::class);
     }
