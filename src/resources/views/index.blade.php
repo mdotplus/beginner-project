@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="attendance__contents">
-        <p class="greeting">{{ $user['name'] }} さんお疲れ様です！{{ $user['status'] }}</p>
+        <p class="greeting">{{ $user['name'] }} さんお疲れ様です！</p>
         <div class="attendance__working">
             <form class="attendance__button" action="/timestamp" method="post">
                 @csrf
