@@ -19,20 +19,25 @@ class Timestamp extends Model
         $today = Carbon::now()->format('Y-m-d');
         [$records, $fixedDate] = Timestamp::getRecordsWithDate($today);
 
+        // 対象ユーザーのレコードがなければ出勤前
         $name = Auth::user()->name;
         if (!array_key_exists($name, $records)) {
-            return 'not working';
+            return 'before working';
         }
 
+        // 対象ユーザーの退勤レコードがあれば退勤後
         $userRecord = $records[$name];
         if ($userRecord['work_end'] !== null) {
-            return 'not working';
+            return 'after working';
         }
 
+        // 休憩開始と休憩終了のレコード数が一緒でなければ休憩中
         if (count($userRecord['break_start']) !== count($userRecord['break_end'])) {
             return 'breaking';
         }
 
+        // 上記でなければ(休憩開始と休憩終了のレコードが同数であれば),
+        // 休憩がおわり、引き続き勤務中
         return 'working';
     }
 

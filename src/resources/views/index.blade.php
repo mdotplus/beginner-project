@@ -13,7 +13,7 @@
                 <input type="hidden" name="action" value="work_start">
                 <input type="hidden" name="user_id" value="{{ $user['id'] }}">
                 <button class="attendance__button-submit" type="submit"
-                {{ $user['status'] === 'not working' ? '' : 'disabled' }}>
+                {{ $user['status'] === 'before working' ? '' : 'disabled' }}>
                     勤務開始
                 </button>
             </form>
