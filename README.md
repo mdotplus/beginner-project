@@ -34,4 +34,3 @@
 1. `php artisan key:generate`
 1. `php artisan migrate`
 1. `php artisan db:seed`
-1. vendor/laravel/fortify/src/Http/Controllers/RegisterdUserController.phpの修正
