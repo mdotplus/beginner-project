@@ -29,10 +29,12 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "exclude-from-classmap": [
-            "vendor\\laravel\\fortify\\src\\Http\\Controllers\\RegisteredUserController.php"
+            "vendor\\laravel\\fortify\\src\\Http\\Controllers\\RegisteredUserController.php",
+            "vendor\\laravel\\fortify\\src\\Http\\Controllers\\AuthenticatedSessionController.php"
         ],
         "files": [
-            "app\\venderOverrides\\RegisteredUserController.php"
+            "app\\venderOverrides\\RegisteredUserController.php",
+            "app\\venderOverrides\\AuthenticatedSessionController.php"
         ]
     },
     "autoload-dev": {
