@@ -30,11 +30,11 @@
         },
         "exclude-from-classmap": [
             "vendor\\laravel\\fortify\\src\\Http\\Controllers\\RegisteredUserController.php",
-            "vendor\\laravel\\fortify\\src\\Http\\Controllers\\AuthenticatedSessionController.php"
+            "vendor\\laravel\\fortify\\src\\Http\\Requests\\LoginRequest.php"
         ],
         "files": [
             "app\\venderOverrides\\RegisteredUserController.php",
-            "app\\venderOverrides\\AuthenticatedSessionController.php"
+            "app\\venderOverrides\\LoginRequest.php"
         ]
     },
     "autoload-dev": {

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Requests;
+namespace Laravel\Fortify\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Laravel\Fortify\Fortify;
 
 class LoginRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class LoginRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,8 +25,8 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required', 'email', 'unique:users,email', 'string', 'max:191'],
-            'password' => ['required', 'min:8', 'max:191'],
+            Fortify::username() => 'required|email|string|max:191',
+            'password' => 'required|string|min:8|max:191',
         ];
     }
 
@@ -37,6 +38,7 @@ class LoginRequest extends FormRequest
             'email.string' => '適切なメールアドレスを入力してください',
             'email.max' => 'メールアドレスは191文字以内で入力してください',
             'password.required' => 'パスワードを入力してください',
+            'password.string' => '適切なパスワードを入力してください',
             'password.min' => 'パスワードは8文字以上で入力してください',
             'password.max' => 'パスワードは191文字以内で入力してください',
         ];
